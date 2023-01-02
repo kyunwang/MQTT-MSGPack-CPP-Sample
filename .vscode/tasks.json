@@ -1,0 +1,42 @@
+{
+	"version": "2.0.0",
+	"presentation": {
+		"echo": true,
+		"reveal": "always",
+		"focus": true,
+		"panel": "dedicated"
+	},
+	"tasks": [
+		{
+			"label": "Build & Install Prerequisite Dependencies",
+			"type": "shell",
+			"options": {
+				"cwd": "${workspaceRoot}/libs/paho.mqtt.c"
+			},
+			"command": "cmake . && cmake --build . --target package",
+			"problemMatcher": []
+		},
+		{
+			"label": "Build Libraries",
+			"type": "shell",
+			"options": {
+				"cwd": "${workspaceRoot}/build"
+			},
+			"command": "cmake .. && cmake --build .",
+			"problemMatcher": []
+		},
+		{
+			"label": "Build and Run Script",
+			"type": "shell",
+			"options": {
+				"cwd": "${workspaceRoot}/build"
+			},
+			"command": "cmake --build . && ./src/mainExec",
+			"problemMatcher": [],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		}
+	]
+}
